@@ -8,21 +8,28 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const LoginModal = (props) => {
+  const [open, setOpen] = React.useState(false);
+  // need boolean from props to show login/sign up
+  const [title, setTitle] = React.useState('Login')
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
   return (
     <div>
-      <Button variant="outlined" color="primary">
-        Login
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Sign Up
       </Button>
-      <Dialog
-        open={open}
-        // onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+  <DialogTitle id="form-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Welcome to our page!
           </DialogContentText>
           <TextField
             autoFocus
@@ -32,10 +39,22 @@ const LoginModal = (props) => {
             type="email"
             fullWidth
           />
+            <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="password"
+            type="password"
+            fullWidth
+          />
         </DialogContent>
         <DialogActions>
-          <Button color="primary">Cancel</Button>
-          <Button color="primary">Subscribe</Button>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Subscribe
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
