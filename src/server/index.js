@@ -13,6 +13,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const userController = require('./controllers/userController.js');
+
 const app = express();
 const PORT = 8080;
 
@@ -24,9 +26,8 @@ app.use(cookieParser());
 // Serve the static files from the React app in production mode
 // app.use(express.static('dist'));
 
-app.get('/page', (req, res) => {
-  console.log('getting info');
-  res.send('hello?');
+app.get('/page', userController.addUser, (req, res) => {
+  res.status(200).send('hello?');
 });
 
 // respond with main app in production mode
