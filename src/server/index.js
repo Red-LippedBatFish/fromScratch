@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser")
 const userController = require("./controllers/userController.js")
 const app = express()
 const PORT = 8080
-const apiRouter = require("./routes/index")
+const apiRouter = require("./routes/api.js")
 // Database
 const db = require("./config/database")
 db.authenticate()
