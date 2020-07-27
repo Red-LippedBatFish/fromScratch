@@ -13,11 +13,7 @@ import * as types from '../constants/actionTypes';
 
 // define inital state
 const initialState = {
-  projectsList: [
-    { name: 'task 1', description: 'a cool project', tasks: [{ name: 'sub task', tasks: []}]},
-    { name: 'Important thing', description: 'my life\'s work', tasks: [{ name: 'sub task', tasks: []}]},
-    { name: 'another one', description: 'biiiig project', tasks: [{ name: 'sub task', tasks: []}]},
-  ],
+  projectsList: [],
   totalProjects: 0,
   lastProjectId: 1,
   currentProject: null,
@@ -60,7 +56,15 @@ const projectsReducer = (state=initialState, action) => {
         ...state,
         currentProject
       }
-      
+    
+    case types.GET_PROJECTS:
+      // get current projects from the db and update state
+      const projectsList = action.payload;
+
+      return {
+        ...state,
+        projectsList
+      }
 
     default:
       return state;

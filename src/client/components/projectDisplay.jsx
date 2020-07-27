@@ -30,17 +30,7 @@ const mapStateToProps = state => ({
 // dispatch sends query to reducers
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
-  addProject : (e) => {
-    // const formId = document.getElementById('location');
-    // dispatch(actions.addProject(formId))
-  },
-  addCard : (e) => {
-    // console.log(typeof e.target.className)
-    // dispatch(actions.addCard(e.target.className))
-  },
-  deleteCard : (e) => {
-    // dispatch(actions.deleteCard(e.target.className))
-  }
+
 });
 
 
