@@ -19,7 +19,7 @@ const Tasks = db.define(
   }
 )
 
-Tasks.sync({ force: true }).then(() => {
+Tasks.sync().then(() => {
   console.log("Tasks created...")
 })
 module.exports = Tasks

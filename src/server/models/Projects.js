@@ -17,7 +17,7 @@ const Projects = db.define(
   }
 )
 
-Projects.sync({ force: true }).then(() => {
+Projects.sync().then(() => {
   console.log("Projects created...")
 })
 
