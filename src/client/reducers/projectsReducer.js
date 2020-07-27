@@ -4,7 +4,7 @@
  * @module  reducer.js
  * @author  Red-Lipped Batfish
  * @date
- * @description Projectsreducer for main app
+ * @description projectsReducer for main app
  *
  * ************************************
  */
@@ -20,6 +20,7 @@ const initialState = {
   ],
   totalProjects: 0,
   lastProjectId: 1,
+  currentProject: null,
 };
 
 const projectsReducer = (state=initialState, action) => {
@@ -51,9 +52,18 @@ const projectsReducer = (state=initialState, action) => {
         totalProjects,
       };
 
+    case types.SELECT_PROJECT:
+      // set currentProject to be index for projectsList
+      const currentProject = action.payload;
+
+      return {
+        ...state,
+        currentProject
+      }
+      
 
     default:
-        return state;
+      return state;
   }
 };
 

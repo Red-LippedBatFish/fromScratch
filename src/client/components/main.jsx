@@ -14,10 +14,10 @@ import { connect  } from 'react-redux';
 import * as actions from '../actions/actions';
 
 import { Button } from "@material-ui/core";
-
 import { Typography } from "@material-ui/core";
 
 import Header from './header';
+import ProjectDisplay from './projectDisplay';
 
 // map data to props
 // state is 'state' in relevant reducer
@@ -25,6 +25,7 @@ import Header from './header';
 const mapStateToProps = state => ({
   // provide pertinent state here
   projectsList: state.projects.projectsList, 
+  currentProject: state.projects.currentProject
 });
 
 // map methods to props
@@ -35,15 +36,8 @@ const mapDispatchToProps = dispatch => ({
     // const formId = document.getElementById('location');
     // dispatch(actions.addProject(formId))
   },
-  addCard : (e) => {
-    // console.log(typeof e.target.className)
-    // dispatch(actions.addCard(e.target.className))
-  },
-  deleteCard : (e) => {
-    // dispatch(actions.deleteCard(e.target.className))
-  }
-});
 
+});
 
 
 class Main extends Component {
@@ -77,6 +71,7 @@ class Main extends Component {
     return (
       <div>
         <Header projects={projectsList} />
+        <ProjectDisplay />
       </div>
     );
   }

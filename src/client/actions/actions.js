@@ -13,7 +13,7 @@
 import * as types from '../constants/actionTypes'
 
 
-// export const addCard = (SOME ID) => ({
-//   type: types.METHOD,
-//   payload: SOME ID,
-// });
+export const selectProject = (projectId) => ({
+  type: types.SELECT_PROJECT,
+  payload: projectId,
+});
