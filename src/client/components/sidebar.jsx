@@ -47,11 +47,11 @@ const SideBar = (props) => {
   // populate list of cards to add to sidebar
   const list = (anchor) => {
     const projectCards = projects.map((project, index) => {
-      return <DrawerCard key={index} type="existing" name={project.name} description={project.description} />
+      return <DrawerCard key={index} id={index} name={project.name} description={project.description} />
     });
     
     // returns a list of cards
-    // first card is always a new project
+    // first card is always a 'new project' with '+' button
     return (
       <div
         className='left'
@@ -73,7 +73,7 @@ const SideBar = (props) => {
   )
   };
 
-  // renders the card list (above with )
+  // renders the hamburger menu button and the card list from above onClick
   return (
     <div>
       {['left'].map((anchor) => (
