@@ -8,9 +8,15 @@ const MiniTasks = db.define("minitasks", {
   description: {
     type: Sequelize.STRING,
   },
+  // project_id: {
+  //   type: Sequelize.STRING,
+  // },
+  task_id: {
+    type: Sequelize.STRING,
+  },
 })
 
-MiniTasks.sync().then(() => {
+MiniTasks.sync({ force: true }).then(() => {
   console.log("Minitasks created...")
 })
 module.exports = MiniTasks

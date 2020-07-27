@@ -1,17 +1,19 @@
 const express = require("express")
 const router = express.Router()
 const db = require("../config/database")
+const MiniTasks = require("../models/MiniTasks")
+
 const Tasks = require("../models/Tasks")
 const Sequilize = require("sequelize")
 const Projects = require("../models/Projects")
-const oneToMany = require("../models/oneToMany")
+// const oneToMany = require("../models/oneToMany")
 
 // Get all tasks
-router.get("/projects", (req, res) =>
+router.get("/", (req, res) =>
   Projects.findAll()
-    .then((tasks) => {
-      console.log("Tasks:", tasks)
-      res.send(tasks)
+    .then((project) => {
+      console.log("Tasks:", project)
+      res.send(project)
     })
     .catch((err) => console.error(err.message))
 )
