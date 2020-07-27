@@ -4,6 +4,7 @@ const db = require("../config/database")
 const Tasks = require("../models/Tasks")
 const Sequilize = require("sequelize")
 const Projects = require("../models/Projects")
+const oneToMany = require("../models/oneToMany")
 
 // Get all tasks
 router.get("/projects", (req, res) =>
@@ -49,4 +50,21 @@ router.put("/projects/:title/:data", (req, res) => {
   ).then(() => console.log("updated!"))
 })
 
+router.get("/test", (req, res) => {
+  oneToMany.Captain.create({
+    name: "Jack Sparrow",
+  })
+    .then(function (user) {
+      // Step Two: Create Todo
+      oneToMany.Ship.create({
+        name: "Nina",
+      })
+    })
+    .then(function () {
+      console.log("Everything worked, check the database.")
+    })
+    .catch(function () {
+      console.log("Something went wrong. Catch was executed.")
+    })
+})
 module.exports = router
