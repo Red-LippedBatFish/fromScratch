@@ -26,7 +26,7 @@ const Header = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-            <Sidebar projects={projects} />
+          <Sidebar projects={projects} />
           <Typography variant="h6" className={classes.title}>
             Our App Yo
           </Typography>

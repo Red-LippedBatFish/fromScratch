@@ -47,7 +47,7 @@ const SideBar = (props) => {
   // populate list of cards to add to sidebar
   const list = (anchor) => {
     const projectCards = projects.map((project, index) => {
-      return <DrawerCard key={index} id={index} name={project.name} description={project.description} />
+      return <DrawerCard key={index} id={index} name={project.title} description={project.description} />
     });
     
     // returns a list of cards

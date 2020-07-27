@@ -17,3 +17,8 @@ export const selectProject = (projectId) => ({
   type: types.SELECT_PROJECT,
   payload: projectId,
 });
+
+export const getProjects = (currentProjects) => ({
+  type: types.GET_PROJECTS,
+  payload: currentProjects,
+});
