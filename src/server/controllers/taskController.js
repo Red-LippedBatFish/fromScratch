@@ -1,11 +1,10 @@
-const db = require('../models/taskModels');
-const taskController = {};
+// const db = require('../models/taskModels');
+// const taskController = {};
 
-// write code here
-taskController.getUsers = (req, res, next) => {
-  const query = '';
+// taskController.getUsers = (req, res, next) => {
+//   const query = '';
 
-  db.query(query).then(() => {});
-};
+//   db.query(query).then(() => {});
+// };
 
-module.exports = taskController;
+// module.exports = taskController;
