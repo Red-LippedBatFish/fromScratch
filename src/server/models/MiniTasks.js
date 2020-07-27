@@ -16,7 +16,7 @@ const MiniTasks = db.define("minitasks", {
   },
 })
 
-MiniTasks.sync({ force: true }).then(() => {
+MiniTasks.sync().then(() => {
   console.log("Minitasks created...")
 })
 module.exports = MiniTasks
