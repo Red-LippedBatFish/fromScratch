@@ -71,7 +71,9 @@ class Main extends Component {
     return (
       <div>
         <Header projects={projectsList} />
-        <ProjectDisplay />
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <ProjectDisplay />
+        </div>
       </div>
     );
   }

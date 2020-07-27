@@ -49,7 +49,7 @@ const ProjectDisplay = (props) => {
 
     const { projectsList, currentProject } = props;
     return (
-      <div>
+      <div >
         <h1>projects displayed here</h1>
         <div>
           {currentProject ? <EditProjectTable project={projectsList[currentProject]} /> : <h1>Please Choose a project :)</h1>}
