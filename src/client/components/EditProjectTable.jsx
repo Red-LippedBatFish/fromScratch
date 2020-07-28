@@ -4,34 +4,37 @@
  * @module  EditProjectTable
  * @author  Red-Lipped Batfish
  * @date
- * @description functional component that renders a table to edit projects
- *              
+ * @description functional component that renders a table to edit projects.
+ *              See material-table docs
  * ************************************
- */
-import React, { useState } from 'react';
+ */ // docs: https://github.com/mbrn/material-table
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
 import { connect  } from 'react-redux';
 import { forwardRef } from 'react';
 
 // im so sorry
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
-import Remove from '@material-ui/icons/Remove';
-import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn';
+import { 
+  AddBox,
+  ArrowDownward,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Clear,
+  DeleteOutline,
+  Edit,
+  FilterList,
+  FirstPage,
+  LastPage,
+  Remove,
+  SaveAlt,
+  Search,
+  ViewColumn
+  } from '@material-ui/icons'
 
-// this is literally how to import all the icons
+
+// this is how to import all the icons :(
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -52,18 +55,15 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-const useStyles = makeStyles({
 
-});
 
 // map data to props
 // state is 'state' in relevant reducer
 // i.e. state.projects is in projectsReducer
 const mapStateToProps = state => ({
-  // provide pertinent state here
   currentTaskList: state.projects.currentTaskList,
   projectsList: state.projects.projectsList,
-  currentProject: state.projects.currentProject 
+  projectIndex: state.projects.projectIndex 
 });
 
 // map methods to props
@@ -74,28 +74,26 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.getProjects(data));
   },
   selectProject: (e) => {
-    // const currentProject = e.currentTarget.dataset.id;
+    // const projectIndex = e.currentTarget.dataset.id;
     dispatch(actions.selectProject(id));
 
   }
 });
 
 const EditProjectTable = (props) => {
-  const [state, setState] = useState();
-  const classes = useStyles();
-  // const { project, currentTaskList } = props;
-  // const { title, description } = project;
-
+  
   const { 
-    currentProject,
+    projectIndex,
     projectsList,
     currentTaskList,
     getProjects,
     selectProject
   } = props;
 
-  const aProject = projectsList[currentProject];
-  const { title, description } = aProject;
+  // destructure curretly selected project
+  // projectIndex is set in state by clicking card in the sidebar
+  const currentProject = projectsList[projectIndex];
+  const { title, description } = currentProject;
 
   const columns = [
       { title: 'Title', field: 'title' },
@@ -148,7 +146,7 @@ const EditProjectTable = (props) => {
           // sending a delete request to db
           // problem: need rerender table/page and fetch new db data
           // to populate sidebar menu with updated db
-            fetch(`/api/projects/${Number(currentProject) + 1}`, {method: 'DELETE'})
+            fetch(`/api/projects/${Number(projectIndex) + 1}`, {method: 'DELETE'})
               .then((res) => res.json())
               .then((data) => {console.log(data)})
               .catch((e) => console.log(e))

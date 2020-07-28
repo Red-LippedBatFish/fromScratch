@@ -6,19 +6,14 @@
  * @date
  * @description stateful component that renders sidebar, header, fetches project from the db
  *              
- *
  * ************************************
  */
 import React, { useEffect, useState } from 'react';
 import { connect  } from 'react-redux';
 import * as actions from '../actions/actions';
-
-import { Button } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-
 import Header from './header';
 import ProjectDisplay from './projectDisplay';
-import { dispatch } from 'd3';
+
 
 // map data to props
 // state is 'state' in relevant reducer
@@ -26,7 +21,7 @@ import { dispatch } from 'd3';
 const mapStateToProps = state => ({
   // provide pertinent state here
   projectsList: state.projects.projectsList, 
-  currentProject: state.projects.currentProject
+  projectIndex: state.projects.projectIndex
 });
 
 // map methods to props
@@ -61,7 +56,6 @@ const Main = (props) => {
     
   })
 
-  
   return (
     <div>
       <Header projects={!projectsList ? null : projectsList} />
