@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  loginModal
+ * @author  Red-Lipped Batfish
+ * @date
+ * @description functional component that renders a button that will show/hide a modal menu
+ *              
+ * ************************************
+ */
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";

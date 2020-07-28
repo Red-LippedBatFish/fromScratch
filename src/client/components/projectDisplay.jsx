@@ -10,10 +10,7 @@
  */
 import React, { Component } from 'react';
 import { connect  } from 'react-redux';
-import * as actions from '../actions/actions';
-
-import { Button } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+// import * as actions from '../actions/actions';
 
 import EditProjectTable from './EditProjectTable';
 
@@ -24,7 +21,7 @@ const mapStateToProps = state => ({
   // provide pertinent state here
   currentTaskList: state.projects.currentTaskList,
   projectsList: state.projects.projectsList,
-  currentProject: state.projects.currentProject 
+  projectIndex: state.projects.projectIndex 
 });
 
 // map methods to props
@@ -35,14 +32,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-
+// render the <h1> or the edit table based on card selection from the sidebar
+// projectIndex is initially null
 const ProjectDisplay = (props) => {
-
-    const { projectsList, currentProject, currentTaskList } = props;
+    const { projectsList, projectIndex, currentTaskList } = props;
     return (
       <div >
         <div>
-          {currentProject ? <EditProjectTable project={projectsList[currentProject]} tasks={currentTaskList} /> : <h1>Please Choose a project :)</h1>}
+          {projectIndex ? <EditProjectTable project={projectsList[projectIndex]} tasks={currentTaskList} /> : <h1>Please Choose a project :)</h1>}
         </div>
       </div>
     );
