@@ -5,8 +5,9 @@
  * @author  Red-Lipped Batfish
  * @date
  * @description functional component that renders one card in the sidebar comp
+ * 
  * YOU NEED TO REPLACE THE CARD.JS IN: node_modules/@material-ui/core/Card with the CARD.JS IN /components
- * AFTER A FRESH node_modules INSTALL. OTHERWISE SELECTING PROJECTS IN THE SIDEBAR WILL NOT WORK
+ * AFTER A FRESH NPM INSTALL. OTHERWISE SELECTING PROJECTS IN THE SIDEBAR WILL NOT WORK
  * ************************************
  */
 import React from 'react';
@@ -27,11 +28,11 @@ const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
 
   selectProject: (e) => {
-    // const currentProject = e.currentTarget.dataset.id;
+    // const projectIndex = e.currentTarget.dataset.id;
     const { currentTarget:{ dataset:{ id } } } = e;
     dispatch(actions.selectProject(id));
 
-    // id is incremented by one because projects are selected in state
+    // id is incremented by one below because projects are selected in state
     // via their index in the projectsList array. Ids start at 1 in the db
     fetch(`/api/${Number(id) + 1}`)
       .then((res) => res.json())

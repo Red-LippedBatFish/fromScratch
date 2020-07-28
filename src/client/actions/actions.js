@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module  actions.js
- * @author
+ * @author Red-Lipped Batfish
  * @date
  * @description Action Creators
  *
@@ -18,9 +18,9 @@ export const selectProject = (projectId) => ({
   payload: projectId,
 });
 
-export const getProjects = (currentProjects) => ({
+export const getProjects = (projectIndex) => ({
   type: types.GET_PROJECTS,
-  payload: currentProjects,
+  payload: projectIndex,
 });
 
 export const getTasks= (currentTasks) => ({

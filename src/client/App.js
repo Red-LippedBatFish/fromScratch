@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  App
+ * @author  Red-Lipped Batfish
+ * @date
+ * @description stateful component that renders everything else
+ *              
+ * ************************************
+ */
 import React, { Component } from "react";
 import "./app.scss";
 // import Homepage from "./components/homepage"; // use for a login page

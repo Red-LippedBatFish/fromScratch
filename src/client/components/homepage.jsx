@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  homepage
+ * @author  Red-Lipped Batfish
+ * @date
+ * @description functional component that renders a page with buttons that could be used to login
+ *              
+ * ************************************
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AppBar } from "@material-ui/core";

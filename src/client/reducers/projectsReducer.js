@@ -17,7 +17,7 @@ const initialState = {
   currentTaskList: [],
   totalProjects: 0,
   lastProjectId: 1,
-  currentProject: null,
+  projectIndex: null,
 };
 
 const projectsReducer = (state=initialState, action) => {
@@ -32,10 +32,10 @@ const projectsReducer = (state=initialState, action) => {
 
       // create the new project object from provided data
       const newProject = {
-          projectId : state.lastProjectId,
-          name: '', // name from payload
+          id : state.lastProjectId,
+          title: '', // name from payload
           description: '' , // description from payload
-          tasks: [],// tasks from payload?
+          // tasks: [],// tasks from payload?
       };
 
       // make a copy of projectsList and add new project object
@@ -50,18 +50,17 @@ const projectsReducer = (state=initialState, action) => {
       };
 
     case types.SELECT_PROJECT:
-      // set currentProject to be index for projectsList
-      const currentProject = action.payload;
+      // set projectIndex to be index for projectsList
+      const projectIndex = action.payload;
 
-        
         return {
           ...state,
-          currentProject
+          projectIndex
         }
 
     
     case types.GET_PROJECTS:
-      // get current projects from the db and update state
+      // get current projects from the db and updates state
       const projectsList = action.payload;
 
       return {
@@ -70,6 +69,8 @@ const projectsReducer = (state=initialState, action) => {
       }
     
     case types.GET_TASKS:
+      // fetches array of task objects from the db
+      // based on currently selected project in the sidebar
       const currentTaskList = action.payload;
 
       return {

@@ -5,7 +5,7 @@
  * @author  Red-Lipped Batfish
  * @date
  * @description functional component that renders the sidebar in main
- *
+ *              Also renders list of cards from project objects in the db.
  * ************************************
  */
 import React from 'react';
@@ -70,7 +70,7 @@ const SideBar = (props) => {
           {projectCards}
         </List>
       </div>
-  )
+    )
   };
 
   // renders the hamburger menu button and the card list from above onClick

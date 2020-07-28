@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  header
+ * @author  Red-Lipped Batfish
+ * @date
+ * @description functional component that renders the nav bar of the main page
+ *              
+ * ************************************
+ */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
