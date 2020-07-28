@@ -13,21 +13,20 @@ router.get("/", (req, res) =>
   Projects.findAll()
     .then((project) => {
       console.log("Tasks:", project)
-      res.json(project)
+      res.send(project)
     })
     .catch((err) => console.error(err.message))
 )
 
 //Get tasks for a specific project
 router.get("/:id", (req, res) => {
-  const { id } = req.params
+  const id = req.params.id.toString();
   Tasks.findAll({
     where: {
       project_id: id,
     },
   })
     .then((tasks) => {
-      console.log("Tasks:", tasks)
       res.json(tasks)
     })
     .catch((err) => console.error(err.message))
@@ -66,7 +65,7 @@ router.delete("/projects/:id", (req, res) => {
       })
     })
     .then(() => {
-      res.status(200).send("Destroyed!")
+      res.redirect('/')
     })
     .catch((err) => console.error(err))
 })

@@ -22,6 +22,7 @@ import EditProjectTable from './EditProjectTable';
 // i.e. state.projects is in projectsReducer
 const mapStateToProps = state => ({
   // provide pertinent state here
+  currentTaskList: state.projects.currentTaskList,
   projectsList: state.projects.projectsList,
   currentProject: state.projects.currentProject 
 });
@@ -37,12 +38,11 @@ const mapDispatchToProps = dispatch => ({
 
 const ProjectDisplay = (props) => {
 
-    const { projectsList, currentProject } = props;
+    const { projectsList, currentProject, currentTaskList } = props;
     return (
       <div >
-        <h1>projects displayed here</h1>
         <div>
-          {currentProject ? <EditProjectTable project={projectsList[currentProject]} /> : <h1>Please Choose a project :)</h1>}
+          {currentProject ? <EditProjectTable project={projectsList[currentProject]} tasks={currentTaskList} /> : <h1>Please Choose a project :)</h1>}
         </div>
       </div>
     );

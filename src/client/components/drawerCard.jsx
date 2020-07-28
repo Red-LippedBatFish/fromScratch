@@ -25,13 +25,19 @@ import * as actions from '../actions/actions';
 // dispatch sends query to reducers
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
-  addProject : (e) => {
-    // dispatch(actions.addProject(formId))
-  },
+
   selectProject: (e) => {
     // const currentProject = e.currentTarget.dataset.id;
     const { currentTarget:{ dataset:{ id } } } = e;
     dispatch(actions.selectProject(id));
+
+    // id is incremented by one because projects are selected in state
+    // via their index in the projectsList array. Ids start at 1 in the db
+    fetch(`/api/${Number(id) + 1}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(actions.getTasks(data))
+      }).catch((e) => {console.log(e)})
   }
 });
 

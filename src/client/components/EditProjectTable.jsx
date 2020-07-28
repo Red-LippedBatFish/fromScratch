@@ -1,7 +1,17 @@
+/**
+ * ************************************
+ *
+ * @module  EditProjectTable
+ * @author  Red-Lipped Batfish
+ * @date
+ * @description functional component that renders a table to edit projects
+ *              
+ * ************************************
+ */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MaterialTable from 'material-table';
-
+import { connect  } from 'react-redux';
 import { forwardRef } from 'react';
 
 // im so sorry
@@ -46,30 +56,69 @@ const useStyles = makeStyles({
 
 });
 
-const EditProjectTable = (props) => {
-  const classes = useStyles();
-  const { project } = props;
-  const { name, description, tasks } = project;
+// map data to props
+// state is 'state' in relevant reducer
+// i.e. state.projects is in projectsReducer
+const mapStateToProps = state => ({
+  // provide pertinent state here
+  currentTaskList: state.projects.currentTaskList,
+  projectsList: state.projects.projectsList,
+  currentProject: state.projects.currentProject 
+});
 
-  const [state, setState] = useState({
-    columns: [
-      { title: 'Name', field: 'name' },
+// map methods to props
+// dispatch sends query to reducers
+const mapDispatchToProps = dispatch => ({
+  // create functions that will dispatch action creators
+  getProjects: (data) => {
+    dispatch(actions.getProjects(data));
+  },
+  selectProject: (e) => {
+    // const currentProject = e.currentTarget.dataset.id;
+    dispatch(actions.selectProject(id));
+
+  }
+});
+
+const EditProjectTable = (props) => {
+  const [state, setState] = useState();
+  const classes = useStyles();
+  // const { project, currentTaskList } = props;
+  // const { title, description } = project;
+
+  const { 
+    currentProject,
+    projectsList,
+    currentTaskList,
+    getProjects,
+    selectProject
+  } = props;
+
+  const aProject = projectsList[currentProject];
+  const { title, description } = aProject;
+
+  const columns = [
+      { title: 'Title', field: 'title' },
       { title: 'Description', field: 'description' },
       { title: 'Tasks', field: 'tasks' },
       // { title: 'Birth Place', field: 'birthCity', lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' }, },
-    ],
-    data: [
-      { name: name, description: description, tasks: JSON.stringify(tasks) },
-    ],
-  });
+  ]
+
+  const tasks = currentTaskList.map(el => el.title);
+
+
+  const  data = [
+    { title: title, description: description, tasks: tasks.join(', ') },
+  ]
+  
 
   return (
     <div style={{maxWidth: "100%"}}>
     <MaterialTable
-      title={name}
+      title={title}
       icons={tableIcons}
-      columns={state.columns}
-      data={state.data}
+      columns={columns}
+      data={data}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {
@@ -95,17 +144,26 @@ const EditProjectTable = (props) => {
               }
             }, 600);
           }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
+        onRowDelete: (oldData) => (
+          // sending a delete request to db
+          // problem: need rerender table/page and fetch new db data
+          // to populate sidebar menu with updated db
+            fetch(`/api/projects/${Number(currentProject) + 1}`, {method: 'DELETE'})
+              .then((res) => res.json())
+              .then((data) => {console.log(data)})
+              .catch((e) => console.log(e))
+        )
+
+          // new Promise((resolve) => {
+          //   setTimeout(() => {
+          //     resolve();
+          //     setState((prevState) => {
+          //       const data = [...prevState.data];
+          //       data.splice(data.indexOf(oldData), 1);
+          //       return { ...prevState, data };
+          //     });
+          //   }, 600);
+          // }),
       }}
     />
   </div>
@@ -113,4 +171,4 @@ const EditProjectTable = (props) => {
 }
 
 
-export default EditProjectTable;
+export default connect(mapStateToProps, mapDispatchToProps)(EditProjectTable);

@@ -53,13 +53,12 @@ const Main = (props) => {
     fetch('/api')
       .then((res) => res.json())
       .then((data) => {
-        console.log('data ', data);
         if (!beenFetched) {
           setBeenFetched(true)
           getProjects(data);
         }
       }).catch((error) => console.log('error fetching projects ', error))
-
+    
   })
 
   

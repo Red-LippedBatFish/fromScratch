@@ -22,3 +22,9 @@ export const getProjects = (currentProjects) => ({
   type: types.GET_PROJECTS,
   payload: currentProjects,
 });
+
+export const getTasks= (currentTasks) => ({
+  type: types.GET_TASKS,
+  payload: currentTasks,
+});
+
