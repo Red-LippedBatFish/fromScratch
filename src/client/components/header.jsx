@@ -28,7 +28,7 @@ const Header = (props) => {
         <Toolbar>
           <Sidebar projects={projects} />
           <Typography variant="h6" className={classes.title}>
-            Our App Yo
+            Project Manager
           </Typography>
           <Button color="inherit">Logout</Button>
         </Toolbar>
